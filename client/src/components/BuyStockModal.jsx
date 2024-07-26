@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { currentMarketAtom } from "../store/atoms";
 
 function BuyStockModal({ isOpen, onClose }) {
   const currentMarket = useRecoilValue(currentMarketAtom);
+  const [quantity, setQuantity] = useState(1);
   if (!isOpen) return null;
 
   return (
@@ -24,12 +25,21 @@ function BuyStockModal({ isOpen, onClose }) {
               id="quantity"
               placeholder="Enter quantity"
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+              value={quantity}
+              onChange={(e) => {
+                setQuantity(e.target.value);
+              }}
             />
           </div>
 
           <button
             type="submit"
             className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-full"
+            onClick={(e) => {
+              e.preventDefault();
+              onClose();
+              alert(`You bought ${quantity} ${currentMarket}`);
+            }}
           >
             Buy
           </button>

@@ -4,10 +4,12 @@ import Chart from "./Chart";
 import BuySellButtons from "./BuySellButtons";
 import BuyStockModal from "./BuyStockModal";
 import SellStockModal from "./SellStockModal";
+import AddMoneyModal from "./AddMoneyModal";
 
 function Dashboard() {
   const [isBuyModalOpen, setIsBuyModalOpen] = useState(false);
   const [isSellModalOpen, setIsSellModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleBuyModal = () => {
     setIsBuyModalOpen(!isBuyModalOpen);
@@ -15,6 +17,10 @@ function Dashboard() {
 
   const toggleSellModal = () => {
     setIsSellModalOpen(!isSellModalOpen);
+  };
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
   };
 
   return (
@@ -25,8 +31,10 @@ function Dashboard() {
         <BuySellButtons
           onBuyClick={toggleBuyModal}
           onSellClick={toggleSellModal}
+          onAddClick={toggleModal}
         />
       </div>
+      <AddMoneyModal isOpen={isModalOpen} onClose={toggleModal} />
       <BuyStockModal isOpen={isBuyModalOpen} onClose={toggleBuyModal} />
       <SellStockModal isOpen={isSellModalOpen} onClose={toggleSellModal} />
     </main>

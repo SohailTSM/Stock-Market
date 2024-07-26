@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { currentMarketAtom, marketsAtom } from "../store/atoms";
 import "../App.css";
@@ -10,6 +10,8 @@ function Sidebar() {
   function handleMarket(e, marketName) {
     setCurrentMarket(marketName);
   }
+
+  
 
   return (
     <aside className="bg-gray-100 w-64 p-4 space-y-2">
